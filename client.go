@@ -198,6 +198,14 @@ func (c *Client) UseContext(cancelContext gocontext.Context) *Client {
 }
 
 // Use uses a new plugin to the middleware stack.
+//
+// ⚠️ Be careful when using this method. Since it applies to all requests, it may lead to unexpected
+// behavior, such as mutex locks, if misused. If you need middleware for a **single request only**,
+// use `Request.Use()` instead.
+//
+// Example:
+// httpClient.Use(middleware).Post() // Middleware applies to ALL requests (⚠️ use with caution!)
+// httpClient.Post().Use(middleware) // Middleware applies ONLY to this request (✅ recommended)
 func (c *Client) Use(p plugin.Plugin) *Client {
 	c.Middleware.Use(p)
 	return c
