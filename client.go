@@ -101,8 +101,9 @@ func (c *Client) Head() *Request {
 
 // Method defines a the default HTTP method used by outgoing client requests.
 //
-// ⚠️ Be careful when using this method. Since it applies to all requests, it may lead to unexpected
-// behavior, such as mutex locks, if misused. If you need middleware for a **single request only**,
+// ⚠️ Method employs a new plugin within the middleware stack.
+// Exercise caution when utilising this method. Considering its applicability to all requests, it may yield unforeseen consequences.
+// Behaviours, such as mutex locks, may lead to complications if misused. Should you require middleware for a single request only?
 // use `Request.Method()` instead.
 func (c *Client) Method(name string) *Client {
 	c.Middleware.UseRequest(func(ctx *context.Context, h context.Handler) {
@@ -115,8 +116,9 @@ func (c *Client) Method(name string) *Client {
 // URL defines the URL for client requests.
 // Useful to define at client level the base URL and base path used by child requests.
 //
-// ⚠️ Be careful when using this method. Since it applies to all requests, it may lead to unexpected
-// behavior, such as mutex locks, if misused. If you need middleware for a **single request only**,
+// ⚠️ URL employs a new plugin within the middleware stack.
+// Exercise caution when utilising this method. Considering its applicability to all requests, it may yield unforeseen consequences.
+// Behaviours, such as mutex locks, may lead to complications if misused. Should you require middleware for a single request only?
 // use `Request.URL()` instead.
 func (c *Client) URL(uri string) *Client {
 	c.Use(url.URL(uri))
@@ -126,8 +128,9 @@ func (c *Client) URL(uri string) *Client {
 // BaseURL defines the URL schema and host for client requests.
 // Useful to define at client level the base URL used by client child requests.
 //
-// ⚠️ Be careful when using this method. Since it applies to all requests, it may lead to unexpected
-// behavior, such as mutex locks, if misused. If you need middleware for a **single request only**,
+// ⚠️ BaseURL employs a new plugin within the middleware stack.
+// Exercise caution when utilising this method. Considering its applicability to all requests, it may yield unforeseen consequences.
+// Behaviours, such as mutex locks, may lead to complications if misused. Should you require middleware for a single request only?
 // use `Request.BaseURL()` instead.
 func (c *Client) BaseURL(uri string) *Client {
 	c.Use(url.BaseURL(uri))
@@ -136,8 +139,9 @@ func (c *Client) BaseURL(uri string) *Client {
 
 // Path defines the URL base path for client requests.
 //
-// ⚠️ Be careful when using this method. Since it applies to all requests, it may lead to unexpected
-// behavior, such as mutex locks, if misused. If you need middleware for a **single request only**,
+// ⚠️ Path employs a new plugin within the middleware stack.
+// Exercise caution when utilising this method. Considering its applicability to all requests, it may yield unforeseen consequences.
+// Behaviours, such as mutex locks, may lead to complications if misused. Should you require middleware for a single request only?
 // use `Request.Path()` instead.
 func (c *Client) Path(path string) *Client {
 	c.Use(url.Path(path))
@@ -146,8 +150,9 @@ func (c *Client) Path(path string) *Client {
 
 // AddPath concatenates a path slice to the existent path in at client level.
 //
-// ⚠️ Be careful when using this method. Since it applies to all requests, it may lead to unexpected
-// behavior, such as mutex locks, if misused. If you need middleware for a **single request only**,
+// ⚠️ AddPath employs a new plugin within the middleware stack.
+// Exercise caution when utilising this method. Considering its applicability to all requests, it may yield unforeseen consequences.
+// Behaviours, such as mutex locks, may lead to complications if misused. Should you require middleware for a single request only?
 // use `Request.AddPath()` instead.
 func (c *Client) AddPath(path string) *Client {
 	c.Use(url.AddPath(path))
@@ -156,8 +161,9 @@ func (c *Client) AddPath(path string) *Client {
 
 // Param replaces a path param based on the given param name and value.
 //
-// ⚠️ Be careful when using this method. Since it applies to all requests, it may lead to unexpected
-// behavior, such as mutex locks, if misused. If you need middleware for a **single request only**,
+// ⚠️ Param employs a new plugin within the middleware stack.
+// Exercise caution when utilising this method. Considering its applicability to all requests, it may yield unforeseen consequences.
+// Behaviours, such as mutex locks, may lead to complications if misused. Should you require middleware for a single request only?
 // use `Request.Param()` instead.
 func (c *Client) Param(name, value string) *Client {
 	c.Use(url.Param(name, value))
@@ -166,8 +172,9 @@ func (c *Client) Param(name, value string) *Client {
 
 // Params replaces path params based on the given params key-value map.
 //
-// ⚠️ Be careful when using this method. Since it applies to all requests, it may lead to unexpected
-// behavior, such as mutex locks, if misused. If you need middleware for a **single request only**,
+// ⚠️ Params employs a new plugin within the middleware stack.
+// Exercise caution when utilising this method. Considering its applicability to all requests, it may yield unforeseen consequences.
+// Behaviours, such as mutex locks, may lead to complications if misused. Should you require middleware for a single request only?
 // use `Request.Params()` instead.
 func (c *Client) Params(params map[string]string) *Client {
 	c.Use(url.Params(params))
@@ -177,8 +184,9 @@ func (c *Client) Params(params map[string]string) *Client {
 // SetHeader sets a new header field by name and value.
 // If another header exists with the same key, it will be overwritten.
 //
-// ⚠️ Be careful when using this method. Since it applies to all requests, it may lead to unexpected
-// behavior, such as mutex locks, if misused. If you need middleware for a **single request only**,
+// ⚠️ SetHeader employs a new plugin within the middleware stack.
+// Exercise caution when utilising this method. Considering its applicability to all requests, it may yield unforeseen consequences.
+// Behaviours, such as mutex locks, may lead to complications if misused. Should you require middleware for a single request only?
 // use `Request.SetHeader()` instead.
 func (c *Client) SetHeader(key, value string) *Client {
 	c.Use(headers.Set(key, value))
@@ -188,8 +196,9 @@ func (c *Client) SetHeader(key, value string) *Client {
 // AddHeader adds a new header field by name and value
 // without overwriting any existent header.
 //
-// ⚠️ Be careful when using this method. Since it applies to all requests, it may lead to unexpected
-// behavior, such as mutex locks, if misused. If you need middleware for a **single request only**,
+// ⚠️ AddHeader employs a new plugin within the middleware stack.
+// Exercise caution when utilising this method. Considering its applicability to all requests, it may yield unforeseen consequences.
+// Behaviours, such as mutex locks, may lead to complications if misused. Should you require middleware for a single request only?
 // use `Request.AddHeader()` instead.
 func (c *Client) AddHeader(name, value string) *Client {
 	c.Use(headers.Add(name, value))
@@ -198,8 +207,9 @@ func (c *Client) AddHeader(name, value string) *Client {
 
 // SetHeaders adds new header fields based on the given map.
 //
-// ⚠️ Be careful when using this method. Since it applies to all requests, it may lead to unexpected
-// behavior, such as mutex locks, if misused. If you need middleware for a **single request only**,
+// ⚠️ SetHeaders employs a new plugin within the middleware stack.
+// Exercise caution when utilising this method. Considering its applicability to all requests, it may yield unforeseen consequences.
+// Behaviours, such as mutex locks, may lead to complications if misused. Should you require middleware for a single request only?
 // use `Request.SetHeaders()` instead.
 func (c *Client) SetHeaders(fields map[string]string) *Client {
 	c.Use(headers.SetMap(fields))
@@ -208,6 +218,11 @@ func (c *Client) SetHeaders(fields map[string]string) *Client {
 
 // AddCookie sets a new cookie field based on the given http.Cookie struct
 // without overwriting any existent cookie.
+//
+// ⚠️ AddCookie employs a new plugin within the middleware stack.
+// Exercise caution when utilising this method. Considering its applicability to all requests, it may yield unforeseen consequences.
+// Behaviours, such as mutex locks, may lead to complications if misused. Should you require middleware for a single request only?
+// use `Request.AddCookie()` instead.
 func (c *Client) AddCookie(cookie *http.Cookie) *Client {
 	c.Use(cookies.Add(cookie))
 	return c
@@ -216,8 +231,9 @@ func (c *Client) AddCookie(cookie *http.Cookie) *Client {
 // AddCookies sets a new cookie field based on a list of http.Cookie
 // without overwriting any existent cookie.
 //
-// ⚠️ Be careful when using this method. Since it applies to all requests, it may lead to unexpected
-// behavior, such as mutex locks, if misused. If you need middleware for a **single request only**,
+// ⚠️ AddCookies employs a new plugin within the middleware stack.
+// Exercise caution when utilising this method. Considering its applicability to all requests, it may yield unforeseen consequences.
+// Behaviours, such as mutex locks, may lead to complications if misused. Should you require middleware for a single request only?
 // use `Request.AddCookies()` instead.
 func (c *Client) AddCookies(data []*http.Cookie) *Client {
 	c.Use(cookies.AddMultiple(data))
@@ -226,8 +242,9 @@ func (c *Client) AddCookies(data []*http.Cookie) *Client {
 
 // CookieJar creates a cookie jar to store HTTP cookies when they are sent down.
 //
-// ⚠️ Be careful when using this method. Since it applies to all requests, it may lead to unexpected
-// behavior, such as mutex locks, if misused. If you need middleware for a **single request only**,
+// ⚠️ CookieJar employs a new plugin within the middleware stack.
+// Exercise caution when utilising this method. Considering its applicability to all requests, it may yield unforeseen consequences.
+// Behaviours, such as mutex locks, may lead to complications if misused. Should you require middleware for a single request only?
 // use `Request.CookieJar()` instead.
 func (c *Client) CookieJar() *Client {
 	c.Use(cookies.Jar())
@@ -247,9 +264,11 @@ func (c *Client) UseContext(cancelContext gocontext.Context) *Client {
 
 // Use uses a new plugin to the middleware stack.
 //
-// ⚠️ Be careful when using this method. Since it applies to all requests, it may lead to unexpected
-// behavior, such as mutex locks, if misused. If you need middleware for a **single request only**,
-// use `Request.Use()` instead.
+// ⚠️ Use employs a new plugin within the middleware stack.
+// Exercise caution when utilising this method. Considering its applicability to all requests, it may yield unforeseen consequences.
+// Behaviours, such as mutex locks, may lead to complications if misused. Should you require middleware for a single request only?
+//
+// Use `Request.Use()` instead.
 //
 // Example:
 // httpClient.Use(middleware).Post() // Middleware applies to ALL requests (⚠️ use with caution!)
@@ -261,8 +280,9 @@ func (c *Client) Use(p plugin.Plugin) *Client {
 
 // UseRequest uses a new middleware function for request phase.
 //
-// ⚠️ Be careful when using this method. Since it applies to all requests, it may lead to unexpected
-// behavior, such as mutex locks, if misused. If you need middleware for a **single request only**,
+// ⚠️ UseRequest employs a new plugin within the middleware stack.
+// Exercise caution when utilising this method. Considering its applicability to all requests, it may yield unforeseen consequences.
+// Behaviours, such as mutex locks, may lead to complications if misused. Should you require middleware for a single request only?
 // use `Request.UseRequest()` instead.
 func (c *Client) UseRequest(fn context.HandlerFunc) *Client {
 	c.Middleware.UseRequest(fn)
@@ -271,8 +291,9 @@ func (c *Client) UseRequest(fn context.HandlerFunc) *Client {
 
 // UseResponse uses a new middleware function for response phase.
 //
-// ⚠️ Be careful when using this method. Since it applies to all requests, it may lead to unexpected
-// behavior, such as mutex locks, if misused. If you need middleware for a **single request only**,
+// ⚠️ UseResponse employs a new plugin within the middleware stack.
+// Exercise caution when utilising this method. Considering its applicability to all requests, it may yield unforeseen consequences.
+// Behaviours, such as mutex locks, may lead to complications if misused. Should you require middleware for a single request only?
 // use `Request.UseResponse()` instead.
 func (c *Client) UseResponse(fn context.HandlerFunc) *Client {
 	c.Middleware.UseResponse(fn)
@@ -281,8 +302,9 @@ func (c *Client) UseResponse(fn context.HandlerFunc) *Client {
 
 // UseError uses a new middleware function for error phase.
 //
-// ⚠️ Be careful when using this method. Since it applies to all requests, it may lead to unexpected
-// behavior, such as mutex locks, if misused. If you need middleware for a **single request only**,
+// ⚠️ UseError employs a new plugin within the middleware stack.
+// Exercise caution when utilising this method. Considering its applicability to all requests, it may yield unforeseen consequences.
+// Behaviours, such as mutex locks, may lead to complications if misused. Should you require middleware for a single request only?
 // use `Request.UseError()` instead.
 func (c *Client) UseError(fn context.HandlerFunc) *Client {
 	c.Middleware.UseError(fn)
@@ -291,8 +313,9 @@ func (c *Client) UseError(fn context.HandlerFunc) *Client {
 
 // UseHandler uses a new middleware function for the given phase.
 //
-// ⚠️ Be careful when using this method. Since it applies to all requests, it may lead to unexpected
-// behavior, such as mutex locks, if misused. If you need middleware for a **single request only**,
+// ⚠️ UseHandler employs a new plugin within the middleware stack.
+// Exercise caution when utilising this method. Considering its applicability to all requests, it may yield unforeseen consequences.
+// Behaviours, such as mutex locks, may lead to complications if misused. Should you require middleware for a single request only?
 // use `Request.UseHandler()` instead.
 func (c *Client) UseHandler(phase string, fn context.HandlerFunc) *Client {
 	c.Middleware.UseHandler(phase, fn)
